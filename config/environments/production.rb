@@ -2,9 +2,18 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
+  # Config SMTP : Mailjet
+  ActionMailer::Base.smtp_settings = {
+    :user_name => ENV['MAILJET_LOGIN'],
+    :password => ENV['MAILJET_PWD'],
+    :domain => 'annieherieau.fr',
+    :address => 'in-v3.mailjet.com',
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
   # MAILER
-  config.action_mailer.default_url_options = { :host => 'YOURAPPNAME.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'https://thp-event-app.fly.dev' }
   
   # Code is not reloaded between requests.
   config.enable_reloading = false
