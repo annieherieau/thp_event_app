@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "no-reply@annieherieau.fr"
+  default from: ENV['MAILJET.DEFAULT_FROM']
   layout "mailer"
 end
