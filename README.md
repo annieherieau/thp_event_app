@@ -1,24 +1,51 @@
-# README
+# Thp Event app
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Site où les utilisateurs peuvent créer des événements, et s'inscrire aux événements.
+THP Projet validant du 20/02/2024
 
-Things you may want to cover:
+## Fonctionnalités
 
-* Ruby version
+- Page d'accueil : liste des évènements
+- Page évènement :  infos de l'événement (description, date, durée, prix, nombre de participants)
+- Utilisateurs inscrits : s'inscrire / se connecter, profil (voir / éditer / ajouter une photo / supprimer son compte), créer un événement, s'inscrire à un évènement, payer via CB
+- Créateur de l'évènement: éditer, voir la liste des participants, supprimer
+- Interface administrateur
+- Emailing via Mailjet
+- API de paiement Stripe
 
-* System dependencies
+## Installation
 
-* Configuration
+Clone repository
 
-* Database creation
+Install dépendencies
 
-* Database initialization
+```bash
+  $ bundle install
+```
 
-* How to run the test suite
+Install Database : create tables
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+  $ rails db:create
+  $ rails db:migrate
+  $ rails db:seed # for seeding
+```
 
-* Deployment instructions
+To launch server
 
-* ...
+```bash
+  $ bin/rails server
+```
+
+## Todo List:
+- CRUD evennements
+- UD user
+- password
+
+- Page d'accueil : liste des évènements
+- Page évènement :  infos de l'événement (description, date, durée, prix, nombre de participants)
+- Utilisateurs inscrits : s'inscrire / se connecter, profil (voir / éditer / ajouter une photo / supprimer son compte), créer un événement, s'inscrire à un évènement, payer via CB
+- Créateur de l'évènement: éditer, voir la liste des participants, supprimer
+- Interface administrateur
+- Emailing via Mailjet
+- API de paiement Stripe
