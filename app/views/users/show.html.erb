@@ -33,14 +33,17 @@
      <div class="list-group">
       <% if @admin_events %>
         <% @admin_events.each do |event| %>
-          <div class="list-group-item list-group-item-action flex-column align-items-start">
+          <div class="list-group-item flex-column align-items-start">
             <div class="d-flex w-100 justify-content-between">
               <h5 class="mb-1"><%= event.title %></h5>
               <small><%= event.price %>&nbsp;€</small>
             </div>
             <p class="mb-1"><%= event.date %><br>
             <%= event.description %></p>
-            <small>VOIR - MODIFIER - SUPPRIMER</small>
+             <div class='d-flex justify-content-end my-3'>
+                <%= link_to 'Voir', event_path(event.id) , class: "btn btn-primary mx-2", role: "button"%>
+                <%= link_to 'Modifier', edit_event_path(event.id) , class: "btn btn-secondary mx-2", role: "button"%>
+            </div>
           </div>
         <% end %>
       <% end %>
