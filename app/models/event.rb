@@ -2,6 +2,9 @@ class Event < ApplicationRecord
   #table N-1  Class_name
   belongs_to :admin_user, class_name: 'User'
 
+  # table N-N Class_name through
+  has_many :attendances
+  has_many :users, through: :attendances
 
   # validation
   validates_comparison_of :start_date, greater_than: DateTime.now, presence: true
