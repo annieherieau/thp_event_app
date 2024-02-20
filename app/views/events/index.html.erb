@@ -8,11 +8,13 @@
       <p class="card-text">Date : <%= event.date %> - Heure : <%= event.start_time %> à <%= event.end_time %><br>
        Durée : <%= event.duration_conversion %> h</p>
       <div class='d-flex justify-content-end'>
+      <% if current_user == event.admin_user%>
+          <%= link_to 'Modifier', edit_event_path(event.id) , class: "btn btn-warning mx-2", role: "button"%>
+      <%end%>
         <%= link_to 'Voir les détails', event_path(event.id) , class: "btn btn-primary mx-2", role: "button"%>
         <%= link_to  "#{event.price} €", event_path(event), class: "btn btn-secondary mx-2", role: "button"%>
       </div>
     </div>
   </div>
-  <div>
 <% end %>
 

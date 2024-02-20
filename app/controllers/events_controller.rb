@@ -4,6 +4,12 @@ class EventsController < ApplicationController
     @events = Event.all
   end
 
+  def show
+    @event = Event.find(params[:id])
+    @users = @event.user_ids
+    @admin_user = @event.admin_user
+  end
+
   def new
     @event = Event.new
     @event.duration = 60
@@ -23,7 +29,7 @@ class EventsController < ApplicationController
     )
 
     if @event.save
-      redirect_to events_path(@event)
+      redirect_to event_path(@event)
     else
       render :new
     end
