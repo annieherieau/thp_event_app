@@ -25,7 +25,9 @@ puts '---- reset tables ---'
   User.create!(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-    description: Faker::Lorem.paragraph(sentence_count: rand(2..5))
+    description: Faker::Lorem.paragraph(sentence_count: rand(2..5)),
+    email: "user#{(i+1).to_s.rjust(2,'0')}@annieherieau.fr",
+    password: "Azerty1&"
   )
 end
 puts '---- 5 users ---'
