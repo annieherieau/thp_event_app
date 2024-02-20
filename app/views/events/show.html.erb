@@ -1,4 +1,4 @@
-<h1>Evenement</h1>
+<h1>Évènement</h1>
 
   <div class="card my-3">
     <div class="card-body">
@@ -15,7 +15,7 @@
 
        <div class='d-flex justify-content-end'>
        <% if current_user == @event.admin_user%>
-          <%= link_to 'Modifier', edit_event_path(@event.id) , class: "btn btn-primary mx-2", role: "button"%>
+          <%= link_to 'Modifier', edit_event_path(@event.id) , class: "btn btn-warning mx-2", role: "button"%>
       <%end%>
       </div>
 

@@ -5,7 +5,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
+    @event = Event.find(params[:id].to_i)
     @users = @event.user_ids
     @admin_user = @event.admin_user
   end
@@ -36,7 +36,17 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @event = Event.find(params[:id])
+    @event = Event.find(params[:id].to_i)
+    redirect_to event_path(@event) if current_user.id != @event.admin_user_id
+    
+  end
+
+  def update
+    if @event.update(post_params)
+      redirect_to event_path(@event)
+    else
+      render :edit
+    end
   end
 
   def destroy

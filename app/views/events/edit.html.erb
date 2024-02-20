@@ -1,1 +1,53 @@
 <h1>Modifier un évènement</h1>
+
+<%# ALERTE FORMULAIRE %>
+<% if @event && @event.errors.any? %>
+  <p>Nous n'avons pas réussi à créer ton compte pour la (ou les) raison(s) suivante(s) :</p>
+  <% @event.errors.full_messages.each do |message| %>
+    <p class="alert alert-danger" role="alert"><%= message %></p>
+  <% end %>
+<% end %>
+
+<%# FORMULAIRE %>
+  <div class="card bg-body-tertiary mb-3">
+    <div class="card-body">
+      <%= form_with url: events_path(@event), action: 'create', method: "post"  do |f| %>
+        <div class= "form-group required ">
+          <%=f.hidden_field :admin_user_id, value: current_user.id %>
+          <%# title %>
+          <%= f.label :title, "Titre", class: "form-label"%>
+          <%= f.text_field :title, required: true, class: 'form-control', value: @event.title %>
+          <br>
+         
+              <%# start_date %>
+              <%= f.label :start_date, "Date de début ", class: "form-label"%><br>
+              <%= f.datetime_select :start_date, required: true, class: 'form-control', autocomplete: @event.start_date, class: "form-select" %>
+            <br><br>
+              <%# duration %>
+              <%= f.label :duration, "Durée (en minutes)", class: "form-label"%>
+              <%= f.number_field :duration, required: true, class: 'form-control', value: @event.duration %>
+          <br>
+      
+              <%# location %>
+              <%= f.label :location, "lieu", class: "form-label "%>
+              <%= f.text_field :location, required: true, class: 'form-control ', value: @event.location%>
+              <br>
+              <%# price %>
+              <%= f.label :price, "Prix (€)", class: "form-label"%>
+              <%= f.number_field :price, required: true, class: 'form-control', value: @event.price %>
+          <br>
+           <%# description %>
+          <%= f.label :description, "Description", class: "form-label"%>
+          <%= f.text_area :description, required: true, class: 'form-control', size: "70x5", value: @event.description %>
+          <br>
+        </div>
+        <%# Boutons %>
+        <div class="d-flex justify-content-center">
+          <%# Submit %>
+          <%= f.submit value: "Valider", class: "btn btn-primary w-100 mx-1" %>
+          <%# Retour %>
+          <%= link_to 'Annuler', event_path(@event), class: "btn btn-secondary mx-1"%>
+        </div>
+      <% end %>
+    </div>
+  </div>

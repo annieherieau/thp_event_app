@@ -42,7 +42,7 @@
             <%= event.description %></p>
              <div class='d-flex justify-content-end my-3'>
                 <%= link_to 'Voir', event_path(event.id) , class: "btn btn-primary mx-2", role: "button"%>
-                <%= link_to 'Modifier', edit_event_path(event.id) , class: "btn btn-secondary mx-2", role: "button"%>
+                <%= link_to 'Modifier', edit_event_path(event.id) , class: "btn btn-warning mx-2", role: "button"%>
             </div>
           </div>
         <% end %>
