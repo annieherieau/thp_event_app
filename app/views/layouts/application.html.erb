@@ -13,9 +13,31 @@
   </head>
 
   <body data-turbo="false">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <header>
+      <%# NAVBAR %>
+      <nav>
+        <%= link_to 'accueil', root_path%> 
+        <% if user_signed_in? %>
+          <%= link_to 'Créer un evenement', new_event_path%>
+          <%= link_to "Secret page", static_pages_secret_path %>
+          <%= link_to "Edit email / password", edit_user_registration_path %>
+          <%= button_to "Déconnexion", destroy_user_session_path, method: :delete, data: {turbo_method: :delete} %>
+        <% else %>
+          <%= link_to "Connexion", new_user_session_path %>
+          <%= link_to "Inscription", new_user_registration_path %>
+        <% end %>
+      </nav>
+    </header>
+    <main>
+      <%# ALERTES ET NOTICES %>
+      <div>
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+      </div>
+      <%= yield %>
+    </main>
+    <footer>
+    </footer>
   </body>
       <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
