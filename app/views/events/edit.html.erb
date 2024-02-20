@@ -11,7 +11,7 @@
 <%# FORMULAIRE %>
   <div class="card bg-body-tertiary mb-3">
     <div class="card-body">
-      <%= form_with url: events_path(@event), action: 'create', method: "post"  do |f| %>
+      <%= form_with(model: @event) do |f| %>
         <div class= "form-group required ">
           <%=f.hidden_field :admin_user_id, value: current_user.id %>
           <%# title %>
