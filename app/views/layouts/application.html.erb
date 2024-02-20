@@ -32,19 +32,19 @@
                   <%= link_to 'Créer un evenement', new_event_path , class: "nav-link"%>
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Bonjour <%= current_user.first_name%></a>
+                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Mon profil</a>
                   <div class="dropdown-menu">
                     <%= link_to "Voir mon profil", static_pages_secret_path, class: "dropdown-item" %>
                     <%= link_to "Éditer mon profil", edit_user_registration_path, class: "dropdown-item" %>
                     <div class="dropdown-divider">----</div>
-                    <%= button_to "Déconnexion", destroy_user_session_path, method: :delete, data: {turbo_method: :delete}, class: "dropdown-item"%>
+                    <%= button_to "Se déconnecter", destroy_user_session_path, method: :delete, data: {turbo_method: :delete}, class: "dropdown-item"%>
                   </div>
               <% else %>
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Login</a>
+                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Se connecter / S'inscrire</a>
                   <div class="dropdown-menu">
-                      <%= link_to "Connexion", new_user_session_path, class: "dropdown-item" %>
-                      <%= link_to "Inscription", new_user_registration_path, class: "dropdown-item" %>
+                      <%= link_to "Se connecter", new_user_session_path, class: "dropdown-item" %>
+                      <%= link_to "S'inscrire", new_user_registration_path, class: "dropdown-item" %>
                   </div>
                 </li>
               <% end %>
