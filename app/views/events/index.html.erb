@@ -1,6 +1,6 @@
 <h1>Tous nos évènements</h1>
 
-<% @events.each do |event|%>
+<% @events.sort_by{|e| e.start_date}.each do |event|%>
   <div class="card my-3">
     <div class="card-body">
       <h4 class="card-title"><%= event.title %></h4>
