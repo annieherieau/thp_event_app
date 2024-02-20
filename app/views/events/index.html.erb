@@ -1,2 +1,18 @@
-<h1>Event#index</h1>
-<p>Find me in app/views/event/index.html.erb</p>
+<h1>Tous nos évènements</h1>
+
+<% @events.each do |event|%>
+  <div class="card my-3">
+    <div class="card-body">
+      <h4 class="card-title"><%= event.title %></h4>
+      <h6 class="card-subtitle mb-2 text-muted"><%= event.location %></h6>
+      <p class="card-text">Date : <%= event.date %> - Heure : <%= event.start_time %> à <%= event.end_time %><br>
+       Durée : <%= event.duration_conversion %> h</p>
+      <div class='d-flex justify-content-end'>
+        <%= link_to 'Voir les détails', event_path(event.id) , class: "btn btn-primary mx-2", role: "button"%>
+        <%= link_to  "#{event.price} €", event_path(event), class: "btn btn-secondary mx-2", role: "button"%>
+      </div>
+    </div>
+  </div>
+  <div>
+<% end %>
+

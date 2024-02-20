@@ -53,11 +53,11 @@
         </div>
       </nav>
     </header>
-    <main>
+    <main class="container">
       <%# ALERTES ET NOTICES %>
       <div>
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
+        <p class="text-warning"><%= notice %></p>
+        <p class="text-danger"><%= alert %></p>
       </div>
       <%= yield %>
     </main>

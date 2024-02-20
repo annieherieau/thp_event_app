@@ -14,6 +14,23 @@ class Event < ApplicationRecord
   validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 1000 }
   validates :location, presence: true
 
+  def date
+    self.start_date.strftime('%d/%m/%Y')
+  end
+
+  def duration_conversion
+    hours = (duration / 60).to_s.rjust(2,'0')
+    minutes = (duration % 60).to_s.rjust(2,'0')
+    return "#{hours}:#{minutes}" 
+  end
+
+  def start_time
+    self.start_date.strftime('%H:%M')
+  end
+
+  def end_time
+    (self.start_date + duration*60).strftime('%H:%M')
+  end
   private
   def is_multiple_of_5?
     if (duration % 5) > 0
