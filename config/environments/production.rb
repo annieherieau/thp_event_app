@@ -4,9 +4,10 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   # SECRET_KEYS
   config.secret_key_base = ENV['SECRET_KEY_BASE']
-  
+
   # MAILER
-  config.action_mailer.default_url_options = { :host => 'https://thp-event-app.fly.dev' }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_url_options = { :host => 'https://thp-event-app-16659fca8a30.herokuapp.com/' }
   config.action_mailer.delivery_method = :mailjet
   # Config SMTP : Mailjet
   ActionMailer::Base.smtp_settings = {
