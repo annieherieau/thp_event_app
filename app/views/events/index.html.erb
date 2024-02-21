@@ -1,20 +1,24 @@
-<h1>Tous nos évènements</h1>
+<h1 class="my-5">Tous nos évènements</h1>
 
-<% @events.sort_by{|e| e.start_date}.each do |event|%>
-  <div class="card my-3">
-    <div class="card-body">
-      <h4 class="card-title"><%= event.title %></h4>
-      <h6 class="card-subtitle mb-2 text-muted"><%= event.location %></h6>
-      <p class="card-text">Date : <%= event.date %> - Heure : <%= event.start_time %> à <%= event.end_time %><br>
-       Durée : <%= event.duration_conversion %> h</p>
-      <div class='d-flex justify-content-end'>
-      <% if current_user == event.admin_user%>
-          <%= link_to 'Modifier', edit_event_path(event.id) , class: "btn btn-warning mx-2", role: "button"%>
-      <%end%>
-        <%= link_to 'Voir les détails', event_path(event.id) , class: "btn btn-primary mx-2", role: "button"%>
-        <%= link_to  "#{event.price} €", event_path(event), class: "btn btn-secondary mx-2", role: "button"%>
+<div class="d-flex flex-wrap">
+  <% @events.sort_by{|e| e.start_date}.each do |event|%>
+    <div class="card border-primary m-3 col-5" style="min-width: 20rem;">
+      <div class="card-header">Date : <%= event.date %> - Heure : <%= event.start_time %> à <%= event.end_time %></div>
+      <div class="card-body">
+        <h4 class="card-title"><%= event.title %></h4>
+        <h6 class="card-subtitle mb-2 text-muted"><%= event.location %></h6>
+        <p class="card-text">Durée : <%= event.duration_conversion %> h</p>
+        <div class='d-flex flex-wrap justify-content-end  align-items-baseline'>
+          <div class='d-flex align-items-baseline' >
+        <% if current_user == event.admin_user%>
+            <%= link_to 'Modifier', edit_event_path(event.id) , class: "btn btn-warning mx-2", role: "button"%>
+        <%end%>
+            <%= link_to 'Voir les détails', event_path(event.id) , class: "btn btn-primary mx-2", role: "button"%>
+            <%= link_to  "#{event.price} €", event_path(event), class: "btn btn-secondary mx-2", role: "button"%> 
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
 
