@@ -79,3 +79,5 @@ gem "dockerfile-rails", ">= 1.6", :group => :development
 gem "mailjet", "~> 1.7"
 
 gem "dotenv-rails", "~> 3.0"
+
+gem "stripe", "~> 10.9"
