@@ -76,4 +76,6 @@ gem "letter_opener", "~> 1.9"
 
 gem "devise", "~> 4.9"
 
-gem 'mailjet', :git => 'https://github.com/mailjet/mailjet-gem.git'
+gem "dockerfile-rails", ">= 1.6", :group => :development
+
+gem "mailjet", "~> 1.7"
