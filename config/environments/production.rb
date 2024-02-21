@@ -4,6 +4,7 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   # MAILER
   config.action_mailer.default_url_options = { :host => 'https://thp-event-app.fly.dev' }
+  config.action_mailer.delivery_method = :mailjet
   # Config SMTP : Mailjet
   ActionMailer::Base.smtp_settings = {
     :user_name => ENV['MAILJET_LOGIN'],

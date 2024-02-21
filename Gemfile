@@ -75,3 +75,5 @@ gem "faker", "~> 3.2"
 gem "letter_opener", "~> 1.9"
 
 gem "devise", "~> 4.9"
+
+gem 'mailjet', :git => 'https://github.com/mailjet/mailjet-gem.git'
