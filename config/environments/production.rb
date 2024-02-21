@@ -7,7 +7,7 @@ Rails.application.configure do
 
   # MAILER
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { :host => 'https://thp-event-app-16659fca8a30.herokuapp.com/' }
+  config.action_mailer.default_url_options = { :host => ENV['PROD_HOST'] }
   config.action_mailer.delivery_method = :mailjet
   # Config SMTP : Mailjet
   ActionMailer::Base.smtp_settings = {
