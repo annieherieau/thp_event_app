@@ -1,9 +1,10 @@
 class UserMailer < ApplicationMailer
-  default from: ENV['MAILJET.DEFAULT_FROM']
+  default from: ENV['MAILJET_DEFAULT_FROM']
 
   def welcome_email(user)
     #on récupère l'instance user pour ensuite pouvoir la passer à la view en @user
     @user = user 
+
     #on définit une variable @url qu'on utilisera dans la view d’e-mail
     @url  = 'http://monsite.fr/login' 
 
