@@ -2,6 +2,23 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  
+  # MAILER
+  # MAILER
+  # config.action_mailer.default_url_options = { :host => 'https://thp-event-app.fly.dev' }
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
+    # Config SMTP : Mailjet
+    ActionMailer::Base.smtp_settings = {
+      :user_name => ENV['MAILJET_LOGIN'],
+      :password => ENV['MAILJET_PWD'],
+      :domain =>  ENV['MAILJET_SENDER_DOMAIN'],
+      :address => 'in-v3.mailjet.com',
+      :port => 587,
+      :authentication => :plain,
+      :enable_starttls_auto => true
+    }
 
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development
@@ -73,9 +90,4 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
-
-  # Mailer 
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  # config.action_mailer.delivery_method = :letter_opener
-  config.action_mailer.perform_deliveries = true
 end
