@@ -300,7 +300,6 @@ DEPENDENCIES
   debug
   devise (~> 4.9)
   dockerfile-rails (>= 1.6)
-  dotenv (~> 3.0)
   dotenv-rails (~> 3.0)
   faker (~> 3.2)
   jbuilder
