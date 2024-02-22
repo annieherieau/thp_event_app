@@ -19,7 +19,13 @@
       <% elsif @event.is_already_registred?(current_user) %>
         <h5 class="text-info">Vous êtes inscrit à cet évènement<h5>
       <% else%>
-        <%= button_to "S'inscrire", checkout_create_path(event_id: @event.id), method: :post, data: {turbo: false}, class: "btn btn-success mx-2" %>
+        
+        <% if @event.price.zero? %>
+          <%= button_to "Payer pour s'inscrire", event_attendances_path(event_id: @event.id, user_id: current_user.id), method: :post, data: {turbo: false}, class: "btn btn-success mx-2" %>
+        <% else %>
+          <%= button_to "Payer pour s'inscrire", checkout_create_path(event_id: @event.id), method: :post, data: {turbo: false}, class: "btn btn-success mx-2" %>
+        <% end %>
+        
       <%end%>
     <% else %>
       <%= link_to "Se connecter", new_user_session_path, class: "btn btn-primary mx-2" %>
