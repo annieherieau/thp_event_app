@@ -31,6 +31,15 @@ class Event < ApplicationRecord
   def end_time
     (self.start_date + duration*60).strftime('%H:%M')
   end
+
+  def is_already_registred?(user)
+    self.users.include?(user)
+  end
+
+  def is_admin?(user)
+    self.admin_user == user
+  end
+
   private
   def is_multiple_of_5?
     if (duration % 5) > 0

@@ -22,16 +22,17 @@ class CheckoutController < ApplicationController
         },
       ],
       mode: 'payment',
-      success_url: 'http://localhost:3000' + checkout_success_path(event_id: @product.id) + '?session_id={CHECKOUT_SESSION_ID}',
-      cancel_url: 'http://localhost:3000' + checkout_cancel_path
+      success_url: checkout_success_url + '?session_id={CHECKOUT_SESSION_ID}',
+      cancel_url: checkout_cancel_url
     )
     redirect_to @session.url, allow_other_host: true
   end
 
   def success
+    @session = Stripe::Checkout::Session.retrieve(params[:session_id])
+    @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
+    @event_id = @session.metadata.event_id
     @user = current_user
-    @event = Event.find(params[:event_id])
-    @session_id = params[:session_id]
     @attendance = Attendance.new(
       user: @user,
       event: @event,

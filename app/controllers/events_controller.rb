@@ -42,7 +42,6 @@ class EventsController < ApplicationController
   def destroy
   end
 
-
   private
   def post_params
     post_params = params.require(:event).permit(:admin_user_id, :start_date, :title, :duration, :price, :description, :location)

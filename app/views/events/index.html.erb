@@ -1,20 +1,44 @@
 <h1 class="my-5">Tous nos évènements</h1>
 
+
+
+
 <div class="d-flex flex-wrap">
   <% @events.sort_by{|e| e.start_date}.each do |event|%>
-    <div class="card border-primary m-3 col-5" style="min-width: 20rem;">
-      <div class="card-header">Date : <%= event.date %> - Heure : <%= event.start_time %> à <%= event.end_time %></div>
+    
+    <%# CSS conditionnel: admin, déjà inscrit, non inscrit %>
+    <% if event.is_admin?(current_user) %>
+      <% card_class = "card bg-secondary m-3 col-5"%>
+      <% btn_class = "btn btn-primary mx-2" %>
+    <% elsif event.is_already_registred?(current_user) %>
+      <% card_class = "card text-white bg-primary m-3 col-5"%>
+      <% btn_class = "btn btn-outline-light mx-2" %>
+    <% else %>
+      <% card_class = "card border-primary m-3 col-5" %>
+      <% btn_class = "btn btn-primary mx-2" %>
+    <% end %>
+
+    <%# EVENT CARD %>
+    <div class= "<%= card_class %>" style="min-width: 20rem;">
+      <div class="card-header d-flex align-items-baseline justify-content-between">
+        <%= event.location %>
+        <% if event.is_already_registred?(current_user) %>
+          <span class="badge bg-info">inscrit(e)</span>
+        <% elsif !event.is_admin?(current_user) %>
+           <span class="badge bg-primary"><%= event.price %>&nbsp;€</span>
+        <% end %>
+      </div>
       <div class="card-body">
         <h4 class="card-title"><%= event.title %></h4>
-        <h6 class="card-subtitle mb-2 text-muted"><%= event.location %></h6>
-        <p class="card-text">Durée : <%= event.duration_conversion %> h</p>
-        <div class='d-flex flex-wrap justify-content-end  align-items-baseline'>
+        <h6 class="card-subtitle mb-2">Date : <%= event.date %> - Heure : <%= event.start_time %> à <%= event.end_time %></h6>
+        <p class="card-text ">Durée : <%= event.duration_conversion %> h</p>
+        <%# BUTTONS %>
+        <div class='d-flex flex-wrap justify-content-end  align-items-baseline h-100'>
           <div class='d-flex align-items-baseline' >
-        <% if current_user == event.admin_user%>
-            <%= link_to 'Modifier', edit_event_path(event.id) , class: "btn btn-warning mx-2", role: "button"%>
-        <%end%>
-            <%= link_to 'Voir les détails', event_path(event.id) , class: "btn btn-primary mx-2", role: "button"%>
-            <%= link_to  "#{event.price} €", event_path(event), class: "btn btn-secondary mx-2", role: "button"%> 
+            <% if event.is_admin?(current_user) %>
+              <%= link_to 'Modifier', edit_event_path(event.id) , class: "btn btn-warning mx-2", role: "button"%>
+            <%end%>
+            <%= link_to 'Voir les détails', event_path(event.id) , class: btn_class, role: "button"%>
           </div>
         </div>
       </div>
