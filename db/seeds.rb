@@ -40,7 +40,7 @@ attendance_count = 0
     duration: rand(1..60)*5,
     title: Faker::Lorem.paragraph(sentence_count: rand(1..2)),
     description: Faker::Lorem.paragraph(sentence_count: rand(6..20)),
-    price: rand(1..2),
+    price: rand(0..2),
     location: Faker::Address.city,
     admin_user: User.all.sample
   )
