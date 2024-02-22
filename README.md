@@ -6,7 +6,7 @@ THP Projet validant du 20/02/2024
 ## Fonctionnalités
 
 - Page d'accueil : liste des évènements
-- Page évènement :  infos de l'événement (description, date, durée, prix, nombre de participants)
+- Page évènement : infos de l'événement (description, date, durée, prix, nombre de participants)
 - Utilisateurs inscrits : s'inscrire / se connecter, profil (voir / éditer / ajouter une photo / supprimer son compte), créer un événement, s'inscrire à un évènement, payer via CB
 - Créateur de l'évènement: éditer, voir la liste des participants, supprimer
 - Interface administrateur
@@ -38,8 +38,11 @@ To launch server
 ```
 
 ## Todo List:
+
 - event: destroy (+ attendees + mail)
 - User: Update, delete, ajouter une photo
 - Devise : mailer
 - désincription à un event si payant + refund ?
 - Interface administrateur
+- template Bootstrap Modern Business
+- photo de profil random
