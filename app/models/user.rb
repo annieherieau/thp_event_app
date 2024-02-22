@@ -17,11 +17,9 @@ class User < ApplicationRecord
   # callbacks
   after_create :welcome_send
 
+  # email à la création
   def welcome_send
     UserMailer.welcome_email(self).deliver_now
   end
 
-  def new_attendance_send(event_id)
-    UserMailer.new_attendance_email(self, event_id).deliver_now
-  end
 end

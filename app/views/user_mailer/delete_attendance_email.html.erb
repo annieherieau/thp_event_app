@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Bonjour <%= @user.first_name %>,</h1>
+    <p>
+      Tu t'es désinscrit(e) sur <%= @url %> à l'évènement suivant: <strong><%= @event.title %></strong>
+    </p>
+    <p>
+      Pour voir les détails de cet évènement, va sur sur : <%= @url_event %>.
+    </p>
+    <p> À très vite sur <%= @url %> !
+  </body>
+</html>

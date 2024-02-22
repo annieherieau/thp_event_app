@@ -1,6 +1,6 @@
 class CheckoutController < ApplicationController
+  # création du paiement stripe
   def create
-    # ajouter une sécurité pour attendance uniqueness ?
     @event = Event.find(params[:event_id])
     @amount = @event.price.to_d
     @session = Stripe::Checkout::Session.create(
@@ -27,24 +27,16 @@ class CheckoutController < ApplicationController
     redirect_to @session.url, allow_other_host: true
   end
 
+  # payment succes + création de l'attenance
   def success
     @session = Stripe::Checkout::Session.retrieve(params[:session_id])
     @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
     @event_id = @session.metadata.event_id
     @user = current_user
-
-    # TODO : comment le mettre dans Attendance controller?
-    @attendance = Attendance.new(
-      user_id: @user.id,
-      event_id: @event_id,
-    )
-    if @attendance.save
-      @user.new_attendance_send(@event_id)
-    else
-      flash[:alert] = "Un problème est survenu, merci de contacter l'administrateur"
-    end
+    AttendancesController.new.create(@user.id, @event_id)
   end
 
+  # payment failed
   def cancel
     @event = Event.find(params[:event_id])
   end
