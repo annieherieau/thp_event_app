@@ -1,14 +1,20 @@
 class UserMailer < ApplicationMailer
   default from: ENV['MAILJET_DEFAULT_FROM']
 
+  # email envoyé lors de l'inscription d'un nouvel utilisateur
   def welcome_email(user)
-    #on récupère l'instance user pour ensuite pouvoir la passer à la view en @user
     @user = user 
+    @url = default_url_options
+    @url_sign_in = new_user_session_url
+    mail(to: @user.email, subject: 'Bienvenue sur Thp Event App !') 
+  end
 
-    #on définit une variable @url qu'on utilisera dans la view d’e-mail
-    @url  = 'http://monsite.fr/login' 
-
-    # c'est cet appel à mail() qui permet d'envoyer l’e-mail en définissant destinataire et sujet.
-    mail(to: @user.email, subject: 'Bienvenue chez nous !') 
+  # email envoyé lors de l'inscription à un évènement
+  def new_attendance_email(user, event_id)
+    @user = user
+    @event = Event.find(event_id)
+    @url = default_url_options
+    @url_event = event_url(event_id)
+    mail(to: @user.email, subject: 'Thp Event App : inscription à un évènement') 
   end
 end

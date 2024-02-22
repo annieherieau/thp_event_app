@@ -31,13 +31,16 @@ class CheckoutController < ApplicationController
     @session = Stripe::Checkout::Session.retrieve(params[:session_id])
     @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
     @event_id = @session.metadata.event_id
-
     @user = current_user
+
+    # TODO : comment le mettre dans Attendance controller?
     @attendance = Attendance.new(
       user_id: @user.id,
       event_id: @event_id,
     )
-    if !@attendance.save
+    if @attendance.save
+      @user.new_attendance_send(@event_id)
+    else
       flash[:alert] = "Un problème est survenu, merci de contacter l'administrateur"
     end
   end
