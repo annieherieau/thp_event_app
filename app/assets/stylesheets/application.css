@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+
+ .required .form-label:after { 
+  color: #d00;
+  content: "*";
+  position: relative;
+}
