@@ -38,14 +38,9 @@ To launch server
 ```
 
 ## Todo List:
-- CRUD evennements
-- UD user
-- password
-
-- Page d'accueil : liste des évènements
-- Page évènement :  infos de l'événement (description, date, durée, prix, nombre de participants)
-- Utilisateurs inscrits : s'inscrire / se connecter, profil (voir / éditer / ajouter une photo / supprimer son compte), créer un événement, s'inscrire à un évènement, payer via CB
-- Créateur de l'évènement: éditer, voir la liste des participants, supprimer
+- event: destroy (+ attendees + mail)
+- User: Update, delete, ajouter une photo
+- Devise : mailer
+- inscription / désincription à un event
+- event gratuit
 - Interface administrateur
-- Emailing via Mailjet
-- API de paiement Stripe

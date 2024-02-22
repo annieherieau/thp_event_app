@@ -40,6 +40,7 @@ class EventsController < ApplicationController
   end
 
   def destroy
+    # detruire les participant + mail d'annulation 
   end
 
   private

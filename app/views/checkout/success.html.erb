@@ -1,6 +1,17 @@
-<h1>Paiement réussi</h1>
+<h1 class="my-5">Paiement réussi</h1>
 
 <p>Nous avons bien reçu votre paiement de 
-  <%= number_to_currency(@event.price, unit: "€", separator: ",", delimiter: "", format: "%n %u") %>.</p>
+  <%= number_to_currency(@payment_intent.amount_received/100, unit: @payment_intent.currency, separator: ",", delimiter: "", format: "%n %u") %>.</p>
 
 <p>Le statut de votre paiement est : Terminé avec succès</p> 
+ <%= link_to "Retour à l'évènement", event_path(id: @event_id) , class: "btn btn-success mx-2"%>
+<!-- 
+SESSION: <br>
+<%= @session%>
+<br>
+payment_intent: <br>
+<%= @payment_intent%>
+<br>
+Event ID: <br>
+<%= @event_id%>
+-->

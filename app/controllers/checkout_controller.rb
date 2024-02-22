@@ -1,9 +1,8 @@
 class CheckoutController < ApplicationController
   def create
     # ajouter une sécurité pour attendance uniqueness ?
-    @user = current_user
-    @product = Event.find(params[:event_id])
-    @amount = @product.price.to_d
+    @event = Event.find(params[:event_id])
+    @amount = @event.price.to_d
     @session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
       line_items: [
@@ -17,10 +16,10 @@ class CheckoutController < ApplicationController
           },
           quantity: 1
         },
-        metadata: {
-          event_id: @event_id
-        },
       ],
+      metadata: {
+        event_id: params[:event_id]
+      },
       mode: 'payment',
       success_url: checkout_success_url + '?session_id={CHECKOUT_SESSION_ID}',
       cancel_url: checkout_cancel_url
@@ -32,18 +31,18 @@ class CheckoutController < ApplicationController
     @session = Stripe::Checkout::Session.retrieve(params[:session_id])
     @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
     @event_id = @session.metadata.event_id
+
     @user = current_user
     @attendance = Attendance.new(
-      user: @user,
-      event: @event,
-      stripe_customer_id: @session_id
+      user_id: @user.id,
+      event_id: @event_id,
     )
     if @attendance.save
-      puts '#'*20
-      puts 'Attendance ok'
+      flash[:notice] = "Merci pour votre inscription !"
+
     else
-      puts '#'*20
-      puts 'Attendance NON ok'
+      flash[:alert] = "Un problème est survenu, merci de contacter l'administrateur"
+      puts @attendance.errors
     end
   end
 
