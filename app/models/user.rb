@@ -10,6 +10,9 @@ class User < ApplicationRecord
   has_many :attendances
   has_many :events, through: :attendances
 
+  # table 1-1
+  has_one_attached :avatar
+
   # validation
   validates :first_name, :last_name, presence: true
   validates :email, presence: true , uniqueness: true, confirmation: true

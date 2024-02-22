@@ -5,7 +5,7 @@ Rails.application.configure do
   # Secret keys
   config.secret_key_base = ENV['SECRET_KEY_BASE']
   # MAILER
-  config.action_mailer.perform_deliveries = true
+  config.action_mailer.perform_deliveries = false
   # MAILER LETTER OPPENER
   # config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.default_url_options = { host: ENV['DEV_HOST'] }

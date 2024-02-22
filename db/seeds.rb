@@ -59,3 +59,7 @@ attendance_count = 0
 end
 puts "---- 10 events + #{attendance_count} attendances ---"
 
+2.times do |i|
+  
+end
+

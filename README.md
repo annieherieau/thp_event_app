@@ -41,5 +41,5 @@ To launch server
 - event: destroy (+ attendees + mail)
 - User: Update, delete, ajouter une photo
 - Devise : mailer
-- désincription à un event
+- désincription à un event si payant + refund ?
 - Interface administrateur

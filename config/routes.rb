@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  
+
   # STRIPE 
   scope '/checkout' do
     post 'create', to: 'checkout#create', as: '/checkout_create'
@@ -13,7 +15,9 @@ Rails.application.routes.draw do
   # resources :users, only: [:show]
   resources :events
   resources :attendances
-  resources :users, only:[:show]
+  resources :users, only:[:show] do
+    resources :avatars, only: [:create]
+  end
   
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.

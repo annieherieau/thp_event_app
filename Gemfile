@@ -81,3 +81,5 @@ gem "mailjet", "~> 1.7"
 gem "dotenv-rails", "~> 3.0"
 
 gem "stripe", "~> 10.9"
+
+gem "image_processing", ">= 1.2"

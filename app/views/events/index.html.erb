@@ -24,7 +24,7 @@
         <%= event.location %>
         <% if event.is_already_registred?(current_user) %>
           <span class="badge bg-info">inscrit(e)</span>
-        <% elsif !event.is_admin?(current_user) %>
+        <% else %>
            <span class="badge bg-primary"><%= event.price %>&nbsp;€</span>
         <% end %>
       </div>

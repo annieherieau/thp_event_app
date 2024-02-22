@@ -1,18 +1,31 @@
 <h1 class="my-5">Profil Utilisateur</h1>
-
+<div class="d-flex align-items-center">
 <!-- @User Data -->
-  <ul class="list-group mt-5">
+  <ul class="list-group mb-3 w-70">
     <li class="list-group-item"><strong>Identifiant : </strong><%= @user.id %></li>
     <li class="list-group-item"><strong>Prénom : </strong><%= @user.first_name %></li>
     <li class="list-group-item"><strong>Nom : </strong><%= @user.last_name %></li>
     <li class="list-group-item"><strong>Email : </strong><%= @user.email %></li>
     <li class="list-group-item"><strong>Description : </strong><br><%= @user.description %></li>
   </ul>
+  <div>
+    <%if @user.avatar.attached?%>
+      <%= image_tag @user.avatar, alt: 'avatar', width: "100px", class: "m-3"%>
+    <%else%>
+      <%= form_tag  user_avatars_path(@user.id), multipart: true, class: "m-3" do |f| %>
+        <%= file_field_tag  :avatar,  class: 'form-control' %>
+        <%= submit_tag "uploader l'avatar",  class: 'btn btn-primary btn-sm m-2' %>
+      <% end %>
+    <%end%>
+  </div>
+</div>
 
   <div class="d-flex justify-content-center mb-5">
     <%# EDITER %>
     <%= link_to 'Editer le profil', edit_user_registration_path, class: "btn btn-primary w-100"%>
   </div>
+
+  
     
   <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item" role="presentation">
