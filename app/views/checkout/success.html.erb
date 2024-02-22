@@ -4,7 +4,10 @@
   <%= number_to_currency(@payment_intent.amount_received/100, unit: @payment_intent.currency, separator: ",", delimiter: "", format: "%n %u") %>.</p>
 
 <p>Le statut de votre paiement est : Terminé avec succès</p> 
- <%= link_to "Retour à l'évènement", event_path(id: @event_id) , class: "btn btn-success mx-2"%>
+<p class="text-danger"><%= alert %></p>
+<div>
+ <%= link_to "Retour à l'évènement", event_path(id: @event_id) , class: "btn btn-success w-100"%>
+ </div>
 <!-- 
 SESSION: <br>
 <%= @session%>

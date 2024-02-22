@@ -18,11 +18,11 @@ class CheckoutController < ApplicationController
         },
       ],
       metadata: {
-        event_id: params[:event_id]
+        event_id: @event.id
       },
       mode: 'payment',
       success_url: checkout_success_url + '?session_id={CHECKOUT_SESSION_ID}',
-      cancel_url: checkout_cancel_url
+      cancel_url: checkout_cancel_url(event_id: @event.id)
     )
     redirect_to @session.url, allow_other_host: true
   end
@@ -37,15 +37,12 @@ class CheckoutController < ApplicationController
       user_id: @user.id,
       event_id: @event_id,
     )
-    if @attendance.save
-      flash[:notice] = "Merci pour votre inscription !"
-
-    else
+    if !@attendance.save
       flash[:alert] = "Un problème est survenu, merci de contacter l'administrateur"
-      puts @attendance.errors
     end
   end
 
   def cancel
+    @event = Event.find(params[:event_id])
   end
 end
