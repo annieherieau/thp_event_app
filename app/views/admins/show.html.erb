@@ -1,2 +1,75 @@
-<h1>Admins#show</h1>
-<p>Find me in app/views/admins/show.html.erb</p>
+<h1 class="my-5">Dashboard</h1>
+<div class="d-flex align-items-center">
+<!-- @admin Data -->
+  <ul class="list-group mb-3 w-70">
+    <li class="list-group-item"><strong>Identifiant : </strong><%= @admin.id %></li>
+    <li class="list-group-item"><strong>Email : </strong><%= @admin.email %></li>
+  </ul>
+  <div>
+  </div>
+</div>
+
+  <div class="d-flex justify-content-center mb-5">
+    <%# EDITER %>
+    <%= link_to 'Editer le profil', edit_admin_registration_path, class: "btn btn-primary w-100"%>
+  </div>
+
+  
+    
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" data-bs-toggle="tab" href="#admin" aria-selected="false" role="tab" tabindex="-1">Tes évènements</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link active" data-bs-toggle="tab" href="#attendances" aria-selected="true" role="tab">Tes inscriptions</a>
+    </li>
+  </ul>
+<div id="myTabContent" class="tab-content">
+  <div class="tab-pane fade" id="admin" role="tabpanel">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-primary d-flex justify-content-between align-items-center">
+        Évènements que tu administre
+        <span class="badge bg-primary rounded-pill"><%= @admin_events.length %></span>
+      </li>
+    </ul>
+     <div class="list-group">
+      <% if @admin_events %>
+        <% @admin_events.each do |event| %>
+          <div class="list-group-item flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1"><%= event.title %></h5>
+              <small><%= event.price %>&nbsp;€</small>
+            </div>
+            <p class="mb-1"><%= event.date %><br>
+            <%= event.description %></p>
+             <div class='d-flex justify-content-end my-3'>
+                <%= link_to 'Voir', event_path(event.id) , class: "btn btn-primary mx-2", role: "button"%>
+                <%= link_to 'Modifier', edit_event_path(event.id) , class: "btn btn-warning mx-2", role: "button"%>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+      </div>
+  </div>
+  <div class="tab-pane fade active show" id="attendances" role="tabpanel">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-primary d-flex justify-content-between align-items-center">
+        Évènements auxquels tu participes
+        <span class="badge bg-primary rounded-pill"><%= @events.length %></span>
+      </li>
+    </ul>
+    <div class="list-group">
+      <% if @events %>
+        <% @events.each do |event| %>
+          <a href="<%= event_path(event)%>" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1"><%= event.title %></h5>
+              <small><%= event.price %>&nbsp;€</small>
+            </div>
+            <p class="mb-1"><%= event.date %><br>
+            <%= event.description %></p>
+            <small>VOIR - SE DESINCRIRE</small>
+          </a>
+        <% end %>
+      <% end %>
+      </div>
