@@ -21,7 +21,7 @@ class Event < ApplicationRecord
     self.start_date.strftime('%d/%m/%Y')
   end
 
-  def duration_conversion
+  def duration_format
     hours = (duration / 60).to_s.rjust(2,'0')
     minutes = (duration % 60).to_s.rjust(2,'0')
     return "#{hours}:#{minutes}" 
@@ -45,15 +45,14 @@ class Event < ApplicationRecord
     self.admin_user == user
   end
 
-  # statuts
   def status
     case self.validated
     when true
-      'accepté'
+      'validé'
     when false
       'refusé'
     else
-      'brouillon'
+      'en attente de validation'
     end
   end
 
@@ -64,6 +63,9 @@ class Event < ApplicationRecord
 
   def self.all_validated
     self.all.where(validated: true)
+  end
+  def self.all_to_review
+    self.all.where(validated: nil)
   end
 
   private

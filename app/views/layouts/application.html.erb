@@ -50,7 +50,7 @@
                   <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">ADMINISTRATEUR</a>
                   <div class="dropdown-menu">
-                    <%= link_to "Dashboard", admin_path(current_admin), class: "dropdown-item" %>
+                    <%= link_to "Dashboard", admins_path, class: "dropdown-item" %>
                     <%= link_to "Éditer mon profil", edit_admin_registration_path, class: "dropdown-item" %>
                     <div class="dropdown-divider"></div>
                     <%= button_to "Se déconnecter", destroy_admin_session_path, method: :delete, data: {turbo_method: :delete}, class: "dropdown-item"%>

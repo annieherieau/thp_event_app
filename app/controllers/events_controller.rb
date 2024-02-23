@@ -26,17 +26,11 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @event = Event.find(params[:id].to_i)
-    # if current_user.id != @event.admin_user_id || !@event.is_editable?
-    #   redirect_to event_path(@event)
-    #   flash[:alert] = "Vous ne pouvez pas modifier cet évenement"
-    # end
-     
-    
+    @event = Event.find(params[:id])
   end
 
   def update
-    @event = Event.find(params[:id].to_i)
+    @event = Event.find(params[:id])
     if @event.update(post_params)
       redirect_to event_path(@event)
     else

@@ -1,0 +1,13 @@
+
+  <div class="card my-3">
+    <div class="card-body">
+      <h4 class="card-title"><%= @event.title %></h4>
+      <h6 class="card-subtitle mb-2 text-muted"><%= @event.location %></h6>
+      <p class="card-text">Date : <%= @event.date %> - Heure : <%= @event.start_time %> à <%= @event.end_time %><br>
+       Durée : <%= @event.duration_format %> h</p>
+       <p><%= @event.description %></p>
+       <p>Prix : <%= @event.price %> €</p>
+       <p>Nombre d'inscrits : <%= @users.length %></p>
+       <p>Créateur : <%= @event.admin_user.email %></p>
+    </div>
+  </div>

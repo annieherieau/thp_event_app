@@ -1,8 +1,5 @@
 <h1 class="my-5">Tous nos évènements</h1>
 
-
-
-
 <div class="d-flex flex-wrap">
   <% @events.sort_by{|e| e.start_date}.each do |event|%>
     
@@ -31,7 +28,7 @@
       <div class="card-body">
         <h4 class="card-title"><%= event.title %></h4>
         <h6 class="card-subtitle mb-2">Date : <%= event.date %> - Heure : <%= event.start_time %> à <%= event.end_time %></h6>
-        <p class="card-text ">Durée : <%= event.duration_conversion %> h</p>
+        <p class="card-text ">Durée : <%= event.duration_format %> h</p>
         <%# BUTTONS %>
         <div class='d-flex flex-wrap justify-content-end  align-items-baseline h-100'>
           <div class='d-flex align-items-baseline' >

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   # STRIPE 
   scope '/checkout' do
     post 'create', to: 'checkout#create', as: '/checkout_create'
@@ -21,7 +22,8 @@ Rails.application.routes.draw do
   resources :users, only:[:show] do
     resources :avatars, only: [:create]
   end
-  resources :admins, only:[:show]
+  resources :admins, only:[:show, :index]
+  resources :event_submissions, only:[:show, :index, :edit, :update]
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
