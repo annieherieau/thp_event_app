@@ -16,6 +16,7 @@ puts '_____SEEDING_____'
 Attendance.destroy_all
 User.destroy_all
 Event.destroy_all
+Admin.destroy_all
 ActiveRecord::Base.connection.tables.each do |t|
   ActiveRecord::Base.connection.reset_pk_sequence!(t)
 end
@@ -27,16 +28,16 @@ puts '---- reset tables ---'
     last_name: Faker::Name.last_name,
     description: Faker::Lorem.paragraph(sentence_count: rand(2..5)),
     email: "user#{(i+1).to_s.rjust(2,'0')}@annieherieau.fr",
-    password: "Azerty1&"
+    password: "Azer1&"
   )
 end
 puts '---- 5 users ---'
 
 attendance_total_count = 0
-10.times do |i|
+30.times do |i|
   event = Event.new(
-    # start_date: Faker::Date.between(from: 30.days.ago, to: Faker::Date.forward(days: 60)),
-    start_date: Faker::Time.between(from: DateTime.now, to: DateTime.now + 30, format: :short),
+    start_date: Faker::Date.between(from: 30.days.ago, to: Faker::Date.forward(days: 60)),
+    # start_date: Faker::Time.between(from: DateTime.now, to: DateTime.now + 30, format: :short),
     duration: rand(1..60)*5,
     title: Faker::Lorem.paragraph(sentence_count: rand(1..2)),
     description: Faker::Lorem.paragraph(sentence_count: rand(6..20)),
@@ -48,7 +49,7 @@ attendance_total_count = 0
   event.validated = [true, false].sample if event.reviewed
   event.save
 
-  if event.is_validated?
+  if event.validated
     rand(0..4).times do |i|
       e = Event.last
       u = User.all.sample
@@ -63,9 +64,10 @@ attendance_total_count = 0
     end
   end
 end
-puts "---- 10 events + #{attendance_total_count} attendances ---"
+puts "---- 30 events + #{attendance_total_count} attendances ---"
 
-2.times do |i|
-  
-end
+Admin.create!(
+  email: 'kadmin@annieherieau.fr',
+  password: 'Azer1&'
+)
 

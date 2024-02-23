@@ -6,8 +6,11 @@ class Event < ApplicationRecord
   has_many :attendances
   has_many :users, through: :attendances
 
+    # table 1-1
+    has_one_attached :picture
+
   # validation
-  validates_comparison_of :start_date, greater_than: DateTime.now, presence: true
+  # validates_comparison_of :start_date, greater_than: DateTime.now, presence: true
   validates :duration, presence: true, numericality: { only_integer: true, greater_than: 0 }, if: :is_multiple_of_5?
   validates :title, presence: true,  length: {minimum: 3, maximum:140}
   validates :description, presence: true, length: {minimum:20, maximum:1000}
@@ -32,22 +35,19 @@ class Event < ApplicationRecord
     (self.start_date + duration*60).strftime('%H:%M')
   end
 
+  # verifie si le user est inscrit
   def is_already_registred?(user)
     self.users.include?(user)
   end
 
+  # verifie si le user est le créateur de l'évent
   def is_admin?(user)
     self.admin_user == user
   end
 
-  # statut: si validé : true, non validé : false, pas encore revu (draft) : nil
-  def is_validated?
-    return nil if self.validated.nil?
-    self.validated
-  end
-
+  # statuts
   def status
-    case self.is_validated?
+    case self.validated
     when true
       'accepté'
     when false
@@ -59,7 +59,7 @@ class Event < ApplicationRecord
 
   # modifiable event non validé
   def is_editable?
-    self.validated.nil? && self.start_date < DateTime.now
+    self.validated.nil? || self.start_date > DateTime.now
   end
 
   def self.all_validated

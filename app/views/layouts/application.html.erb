@@ -16,10 +16,14 @@
   </head>
 
   <body data-turbo="false">
-    
+    <% if admin_signed_in? %>
+      <% navbar_bg_class = "bg-dark"%>
+    <% else %>
+      <% navbar_bg_class = "bg-primary"%>
+    <% end %>
     <header>
       <%# NAVBAR %>
-      <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+      <nav class="navbar navbar-expand-lg <%= navbar_bg_class %>" data-bs-theme="dark">
         <div class="container-fluid">
           <%= link_to 'Thp Event App', root_path, class: "navbar-brand"%>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,12 +39,21 @@
                   <%= link_to 'Créer un evenement', new_event_path , class: "nav-link"%>
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Mon profil</a>
+                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">UTILISATEUR</a>
                   <div class="dropdown-menu">
                     <%= link_to "Voir mon profil", user_path(current_user), class: "dropdown-item" %>
                     <%= link_to "Éditer mon profil", edit_user_registration_path, class: "dropdown-item" %>
                     <div class="dropdown-divider">----</div>
                     <%= button_to "Se déconnecter", destroy_user_session_path, method: :delete, data: {turbo_method: :delete}, class: "dropdown-item"%>
+                  </div>
+              <% elsif admin_signed_in? %>
+                  <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">ADMINISTRATEUR</a>
+                  <div class="dropdown-menu">
+                    <%= link_to "Dashboard", admin_path(current_admin), class: "dropdown-item" %>
+                    <%= link_to "Éditer mon profil", edit_admin_registration_path, class: "dropdown-item" %>
+                    <div class="dropdown-divider">----</div>
+                    <%= button_to "Se déconnecter", destroy_admin_session_path, method: :delete, data: {turbo_method: :delete}, class: "dropdown-item"%>
                   </div>
               <% else %>
                 <li class="nav-item dropdown">
