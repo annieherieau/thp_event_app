@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   def index
-    @events = Event.all
+    @events = Event.all_validated
   end
 
   def show
@@ -27,7 +27,12 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id].to_i)
-    redirect_to event_path(@event) if current_user.id != @event.admin_user_id
+    # if current_user.id != @event.admin_user_id || !@event.is_editable?
+    #   redirect_to event_path(@event)
+    #   flash[:alert] = "Vous ne pouvez pas modifier cet évenement"
+    # end
+     
+    
   end
 
   def update

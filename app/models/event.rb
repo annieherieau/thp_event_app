@@ -46,6 +46,26 @@ class Event < ApplicationRecord
     self.validated
   end
 
+  def status
+    case self.is_validated?
+    when true
+      'accepté'
+    when false
+      'refusé'
+    else
+      'brouillon'
+    end
+  end
+
+  # modifiable event non validé
+  def is_editable?
+    self.validated.nil? && self.start_date < DateTime.now
+  end
+
+  def self.all_validated
+    self.all.where(validated: true)
+  end
+
   private
   def is_multiple_of_5?
     if (duration % 5) > 0
@@ -53,7 +73,5 @@ class Event < ApplicationRecord
       return false
     end
   end
-
-
 
 end

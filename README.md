@@ -9,9 +9,9 @@ THP Projet validant du 20/02/2024
 - Page évènement : infos de l'événement (description, date, durée, prix, nombre de participants)
 - Utilisateurs inscrits : s'inscrire / se connecter, profil (voir / éditer / ajouter une photo / supprimer son compte), créer un événement, s'inscrire à un évènement, payer via CB
 - Créateur de l'évènement: éditer, voir la liste des participants, supprimer
-- Interface administrateur
 - Emailing via Mailjet
 - API de paiement Stripe
+- Interface administrateur: gestion des users et validation des events
 
 ## Installation
 
@@ -39,10 +39,12 @@ To launch server
 
 ## Todo List:
 
+- event, mas le droit de modifier une date passée
 - event: destroy (+ attendees + mail)
-- User: Update, delete, ajouter une photo
+- User: Update, delete
 - Devise : mailer
 - désincription à un event si payant + refund ?
 - Interface administrateur
 - template Bootstrap Modern Business
 - photo de profil random
+- bug date on update

@@ -1,5 +1,8 @@
 <h1 class="my-5">Évènement</h1>
-
+  <% if @event.is_admin?(current_user) %> <!-- TODO ou current_admin --> 
+    <h2>Statut : <%= @event.status %></h2>
+  <% end %>
+    
   <% if @event.is_already_registred?(current_user) %>
     <h5 class="text-info">Vous êtes inscrit à cet évènement<h5>
   <% end %>
@@ -22,8 +25,10 @@
 
       <%# User admin de l'évent %>
       <% if @event.is_admin?(current_user)%>
-        <%= button_to 'Modifier', edit_event_path(@event.id) , class: "btn btn-success mx-2"%>
-        <%= button_to 'Supprimer', event_path(@event.id) , method: :delete, data: {turbo_method: :delete}, class: "btn btn-danger mx-2"%>
+        <% if @event.is_editable? %>
+          <%= link_to 'Modifier', edit_event_path(@event.id) , class: "btn btn-success mx-2"%>  
+          <%= button_to 'Supprimer', event_path(@event.id) , method: :delete, data: {turbo_method: :delete}, class: "btn btn-danger mx-2"%>
+        <% end %>
       
       <%# User pas admin %>
       <% else %>

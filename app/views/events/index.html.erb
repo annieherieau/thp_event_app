@@ -35,9 +35,6 @@
         <%# BUTTONS %>
         <div class='d-flex flex-wrap justify-content-end  align-items-baseline h-100'>
           <div class='d-flex align-items-baseline' >
-            <% if event.is_admin?(current_user) %>
-              <%= link_to 'Modifier', edit_event_path(event.id) , class: "btn btn-warning mx-2"%>
-            <%end%>
             <%= link_to 'Voir les détails', event_path(event.id) , class: btn_class%>
           </div>
         </div>
