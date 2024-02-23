@@ -63,7 +63,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_23_100433) do
     t.bigint "admin_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "validated", default: false, null: false
+    t.boolean "validated"
     t.boolean "reviewed", default: false, null: false
     t.index ["admin_user_id"], name: "index_events_on_admin_user_id"
   end

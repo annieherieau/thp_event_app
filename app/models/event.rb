@@ -40,6 +40,12 @@ class Event < ApplicationRecord
     self.admin_user == user
   end
 
+  # statut: si validé : true, non validé : false, pas encore revu (draft) : nil
+  def is_validated?
+    return nil if self.validated.nil?
+    self.validated
+  end
+
   private
   def is_multiple_of_5?
     if (duration % 5) > 0
@@ -47,5 +53,7 @@ class Event < ApplicationRecord
       return false
     end
   end
+
+
 
 end
