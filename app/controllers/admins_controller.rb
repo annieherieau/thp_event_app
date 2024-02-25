@@ -4,7 +4,7 @@ class AdminsController < ApplicationController
 
   # DASHBOARD
   def index
-    @events_to_review = Event.where(reviewed: false)
+    @events = Event.where(reviewed: false)
     @validated_events = Event.where(validated: true)
     @rejected_events = Event.where(validated: false)
   end

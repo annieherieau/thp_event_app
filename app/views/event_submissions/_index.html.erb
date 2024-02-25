@@ -1,2 +1,43 @@
-<h1>EventSubmissions#index</h1>
-<p>Find me in app/views/event_submissions/index.html.erb</p>
+<%# stats %>
+    <ul class="list-group">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        Évènements <%= @events.first.status %>
+        <span class="badge bg-dark rounded-pill"><%= @events.length %></span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        Évènements <%= @validated_events.first.status %>s
+        <span class="badge bg-dark rounded-pill"><%= @validated_events.length %></span>
+      </li>
+      <li class="list-group-item  d-flex justify-content-between align-items-center">
+        Évènements <%= @rejected_events.first.status %>s
+        <span class="badge bg-dark rounded-pill"><%= @rejected_events.length %></span>
+      </li>
+      <li class="list-group-item  d-flex justify-content-between align-items-center">
+        Total
+        <span class="badge bg-dark rounded-pill"><%= Event.all.length %></span>
+      </li>
+    </ul>
+
+    <%# Tab event à réviser %>
+    <div class="list-group">
+      <% if @events %>
+        <% @events.each do |event| %>
+          <div class="list-group-item list-group-item-action d-flex justify-content-between">
+            <div>
+              <h5 class="mb-1 text-dark"><%= event.title %></h5>
+              <p class="mb-1">Date : <%= event.date %> de <%= event.start_time %> à <%= event.end_time %> (<%= event.duration_format%>)
+              <br>Prix: <%= event.price %>&nbsp;€</p>
+              <p><%= event.description %></p>
+              <p class="mb-1">Utilisateur : <%= event.admin_user.email %></p>
+            </div>
+            <div>
+              <%= link_to 'Voir', event_path(event.id), class: "btn btn-sm btn-dark my-1 w-100"%>
+              <%= button_to 'Valider', event_path(event.id), class: "btn btn-sm btn-success my-1 w-100"%>
+              <%= button_to 'Rejeter', event_path(event.id), class: "btn btn-sm btn-danger my-1 w-100"%>
+            </div>
+          </div>
+          
+        <% end %>
+      <% end %>
+    </div>
+  </div>
