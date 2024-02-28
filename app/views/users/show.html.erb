@@ -1,86 +1,9 @@
 <h1 class="my-5">Profil Utilisateur</h1>
-<div class="d-flex align-items-center">
-<!-- @User Data -->
-  <ul class="list-group mb-3 w-70">
-    <li class="list-group-item"><strong>Identifiant : </strong><%= @user.id %></li>
-    <li class="list-group-item"><strong>Prénom : </strong><%= @user.first_name %></li>
-    <li class="list-group-item"><strong>Nom : </strong><%= @user.last_name %></li>
-    <li class="list-group-item"><strong>Email : </strong><%= @user.email %></li>
-    <li class="list-group-item"><strong>Description : </strong><br><%= @user.description %></li>
-  </ul>
-  <div>
-    <%if @user.avatar.attached?%>
-      <%= image_tag @user.avatar, alt: 'avatar', width: "100px", class: "m-3"%>
-    <%else%>
-      <%= form_tag  user_avatars_path(@user.id), multipart: true, class: "m-3" do |f| %>
-        <%= file_field_tag  :avatar,  class: 'form-control' %>
-        <%= submit_tag "uploader l'avatar",  class: 'btn btn-primary btn-sm m-2' %>
-      <% end %>
-    <%end%>
-  </div>
-</div>
+<%# profile %>
+<%= render partial: 'users/shared/profile', locals: {user: @user}%>
 
-  <div class="d-flex justify-content-center mb-5">
-    <%# EDITER %>
-    <%= link_to 'Editer le profil', edit_user_registration_path, class: "btn btn-primary btn-block"%>
-  </div>
+<%# liste des évenements %>
+<%= render partial:"users/shared/events_lists", locals: {admin_events: @admin_events, events: @events} %>
 
   
     
-  <ul class="nav nav-tabs" role="tablist">
-    <li class="nav-item" role="presentation">
-      <a class="nav-link" data-bs-toggle="tab" href="#admin" aria-selected="false" role="tab" tabindex="-1">Tes évènements</a>
-    </li>
-    <li class="nav-item" role="presentation">
-      <a class="nav-link active" data-bs-toggle="tab" href="#attendances" aria-selected="true" role="tab">Tes inscriptions</a>
-    </li>
-  </ul>
-<div id="myTabContent" class="tab-content">
-  <div class="tab-pane fade" id="admin" role="tabpanel">
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-primary d-flex justify-content-between align-items-center">
-        Évènements que tu administre
-        <span class="badge bg-primary rounded-pill"><%= @admin_events.length %></span>
-      </li>
-    </ul>
-     <div class="list-group">
-      <% if @admin_events %>
-        <% @admin_events.each do |event| %>
-          <div class="list-group-item flex-column align-items-start">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1"><%= event.title %></h5>
-              <small><%= event.price %>&nbsp;€</small>
-            </div>
-            <p class="mb-1"><%= event.date %><br>
-            <%= event.description %></p>
-             <div class='d-flex justify-content-end my-3'>
-                <%= link_to 'Voir', event_path(event.id) , class: "btn btn-primary mx-2", role: "button"%>
-                <%= link_to 'Modifier', edit_event_path(event.id) , class: "btn btn-warning mx-2", role: "button"%>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-      </div>
-  </div>
-  <div class="tab-pane fade active show" id="attendances" role="tabpanel">
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-primary d-flex justify-content-between align-items-center">
-        Évènements auxquels tu participes
-        <span class="badge bg-primary rounded-pill"><%= @events.length %></span>
-      </li>
-    </ul>
-    <div class="list-group">
-      <% if @events %>
-        <% @events.each do |event| %>
-          <a href="<%= event_path(event)%>" class="list-group-item list-group-item-action flex-column align-items-start">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1"><%= event.title %></h5>
-              <small><%= event.price %>&nbsp;€</small>
-            </div>
-            <p class="mb-1"><%= event.date %><br>
-            <%= event.description %></p>
-            <small>VOIR - SE DESINCRIRE</small>
-          </a>
-        <% end %>
-      <% end %>
-      </div>
