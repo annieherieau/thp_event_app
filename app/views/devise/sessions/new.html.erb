@@ -13,7 +13,7 @@
 
       <%# Mot de passe %>
       <div class="form-group required">
-        <%= f.label :password, class: "form-label"  %><br />
+        <%= f.label :password, "Mot de passe", class: "form-label"  %><br />
         <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
       </div>
       
@@ -22,7 +22,7 @@
         <div class="form-group mt-4">
           <div class="form-check">
             <%= f.check_box :remember_me, class: "form-check-input" %>
-            <%= f.label :remember_me, class: "form-check-label" %>
+            <%= f.label :remember_me, "Se souvenir de moi", class: "form-check-label" %>
           </div>
         </div>
       <% end %>
