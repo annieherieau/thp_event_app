@@ -1,13 +1,19 @@
-
-  <div class="card my-3">
-    <div class="card-body">
-      <h4 class="card-title"><%= @event.title %></h4>
-      <h6 class="card-subtitle mb-2 text-muted"><%= @event.location %></h6>
-      <p class="card-text">Date : <%= @event.date %> - Heure : <%= @event.start_time %> à <%= @event.end_time %><br>
-       Durée : <%= @event.duration_format %> h</p>
-       <p><%= @event.description %></p>
-       <p>Prix : <%= @event.price %> €</p>
-       <p>Nombre d'inscrits : <%= @users.length %></p>
-       <p>Créateur : <%= @event.admin_user.email %></p>
+    <div class="container">
+    <div class="row d-flex align-items-center ">
+      <div class="col-md-6">
+        <img class='w-100 card border-0' src="" alt="">
+      </div>
+      <div class="col-md-6">
+        <h2 class="featurette-heading fw-normal lh-2"><%= @event.title %><br>
+          <span class="text-body-secondary"><%= @event.location %></span></h2>
+        <p class="lead">Date : <%= @event.date %> à <%= @event.start_time %><br>
+          Durée : <%= @event.duration_format %> h <br>
+          Prix : <%= @event.price %>&nbsp;€</p>
+        <p>Contact : <a href="mailto:<%= @event.admin_user.email %>"><%= @event.admin_user.email %></a> (Profile)</p>
+      </div>
     </div>
+  </div>
+  <div class="container py-3">
+        <p class="my-4"><%= @event.description %></p>
+        <p>Nombre d'inscrits : <%= @users.length %></p>
   </div>
