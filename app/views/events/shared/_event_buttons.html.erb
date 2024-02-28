@@ -1,0 +1,42 @@
+<div class='d-flex justify-content-end'>
+    <%# Si user connecté %>
+    <% if user_signed_in? %>
+
+      <%# User admin de l'évent %>
+      <% if event.is_admin?(current_user)%>
+        <% if event.is_editable? %>
+          <%= link_to 'Modifier', edit_event_path(event.id) , class: "btn btn-success mx-2"%>  
+          <%= button_to 'Supprimer', event_path(event.id) , method: :delete, data: {turbo_method: :delete}, class: "btn btn-danger mx-2"%>
+        <% end %>
+      
+      <%# User pas admin %>
+      <% else %>
+
+        <%# User inscrit %>
+        <% if event.is_already_registred?(current_user)  %>
+          
+          <%# Event prix = 0 %>
+          <% if event.price.zero? %>
+            <%= button_to "Se désinscrire", attendance_path(user_id: current_user.id), method: :delete, action: :destroy, class: "btn btn-danger mx-2" %>
+          <% end %>
+          
+        <%# User pas inscrit %>
+        <% else%>
+          
+          <%# Event prix = 0 %>
+          <% if event.price.zero? %>
+            <%= button_to "S'inscrire", attendances_path(event_id: event.id, user_id: current_user.id), method: :post, class: "btn btn-success mx-2" %>
+          <%# Event PRix > 0 %>
+          <% else %>
+            <%= button_to "Payer pour s'inscrire", checkout_create_path(event_id: event.id), method: :post, data: {turbo: false}, class: "btn btn-success mx-2" %>
+          <% end %>
+        
+        <% end %>
+      <%end%>
+
+    <%# User non connecté %>
+    <% else %>
+      <%= link_to "Se connecter", new_user_session_path, class: "btn btn-primary mx-2" %>
+      <%= link_to "S'inscrire", new_user_registration_path, class: "btn btn-secondary mx-2" %>
+    <% end %>
+  </div>
