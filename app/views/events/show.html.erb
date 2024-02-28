@@ -2,15 +2,16 @@
   <% if @event.is_admin?(current_user) %> <!-- TODO ou current_admin --> 
     <h2>Statut : <%= @event.status %></h2>
   <% end %>
-    
-  <% if @event.is_already_registred?(current_user) %>
-    <h5 class="text-info">Vous êtes inscrit à cet évènement<h5>
+    <% if @event.is_already_registred?(current_user) %>
+    <h5 class="text-info">Vous êtes inscrit à cet évènement</h5>
   <% end %>
+
   
   <%# EVENT DETAILS %>
   <%= render "events/shared/show_details"%>
+  
+  <%# BOUTONS %>
   <div class='d-flex justify-content-end'>
-
     <%# Si user connecté %>
     <% if user_signed_in? %>
 
