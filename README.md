@@ -39,12 +39,13 @@ To launch server
 
 ## Todo List:
 
-- event, mas le droit de modifier une date passée
+- event, pas le droit de modifier une date passée
 - event: destroy (+ attendees + mail)
 - User: Update, delete
 - Devise : mailer
 - désincription à un event si payant + refund ?
-- Interface administrateur
-- template Bootstrap Modern Business
+- Interface administrateur (validation/ refus)
 - photo de profil random
+- photo évènement
 - bug date on update
+- css: devise, admin
