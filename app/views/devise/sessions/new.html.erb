@@ -8,13 +8,13 @@
       <%#  email %> 
       <div class="form-group required">
         <%= f.label :email , class: "form-label" %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+        <%= f.email_field :email, autofocus: true, required: true, autocomplete: "email", class: "form-control" %>
       </div>
 
       <%# Mot de passe %>
       <div class="form-group required">
         <%= f.label :password, "Mot de passe", class: "form-label"  %><br />
-        <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+        <%= f.password_field :password, required: true, autocomplete: "current-password", class: "form-control" %>
       </div>
       
       <%# Checkbox se souvenir de moi %>
