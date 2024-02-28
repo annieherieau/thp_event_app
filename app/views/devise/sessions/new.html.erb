@@ -5,12 +5,12 @@
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <legend class="text-center"><%= resource_name.to_s.humanize %> Connexion </legend>
      
-      <%#  email %>
+      <%#  email %> 
       <div class="form-group required">
         <%= f.label :email , class: "form-label" %><br />
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
       </div>
-      
+
       <%# Mot de passe %>
       <div class="form-group required">
         <%= f.label :password, class: "form-label"  %><br />
