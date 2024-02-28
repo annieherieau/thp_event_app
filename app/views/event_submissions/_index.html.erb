@@ -31,9 +31,9 @@
               <p class="mb-1">Utilisateur : <%= event.admin_user.email %></p>
             </div>
             <div>
-              <%= link_to 'Voir', event_path(event.id), class: "btn btn-sm btn-dark my-1 w-100"%>
-              <%= button_to 'Valider', event_path(event.id), class: "btn btn-sm btn-success my-1 w-100"%>
-              <%= button_to 'Rejeter', event_path(event.id), class: "btn btn-sm btn-danger my-1 w-100"%>
+              <%= link_to 'Voir', event_path(event.id), class: "btn btn-sm btn-dark my-1 btn-block"%>
+              <%= button_to 'Valider', event_path(event.id), class: "btn btn-sm btn-success my-1 btn-block"%>
+              <%= button_to 'Rejeter', event_path(event.id), class: "btn btn-sm btn-danger my-1 btn-block"%>
             </div>
           </div>
           
